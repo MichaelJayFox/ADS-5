@@ -30,7 +30,7 @@ class TStack {
   bool isFull() const {
     return top == size - 1;
   }
-  T get() const {
+  const T& get() const {
     return array[top];
   }
 };
