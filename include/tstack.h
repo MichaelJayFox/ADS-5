@@ -7,10 +7,10 @@ template<typename T, int size>
 class TStack {
  private:
   int top;
-  T *array;
+  T* array;
  
  public:
-  TStack() : top(-1) {array=new T[size];}
+  TStack() : top(-1) {array = new T[size];}
   void push(T value) {
       if (isFull()) {
           throw std::string("FULL!!!");
