@@ -7,7 +7,7 @@ template<typename T, int size>
 class TStack {
  private:
   int top;
-  T *arr;
+  T *array;
  
  public:
   TStack() : top(-1) {array=new T[size];}
@@ -22,7 +22,7 @@ class TStack {
       if (isEmpty())
           throw std::string("Stack is Empty!");
       else
-          return arr[top--];
+          return array[top--];
   }
   bool isEmpty() const {
     return top == -1;
@@ -31,7 +31,7 @@ class TStack {
     return top == size - 1;
   }
   T get() const {
-    return arr[top];
+    return array[top];
   }
 };
 
