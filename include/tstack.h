@@ -5,16 +5,17 @@
 template<typename T, int size>
 class TStack {
  private:
- int top;
- T arr[100];
- TStack() : top(-1) {}
-    void push(T value) {
+  int top;
+  T arr[100];
+ public:
+  TStack() : top(-1) {}
+  void push(T value) {
       if (isFull()) {
           throw std::string("FULL!!!");
       } else {
           arr[++top] = value;
       }
-    const T& pop() {
+  const T& pop() {
       if (isEmpty())
           throw std::string("Stack is Empty!");
       else
