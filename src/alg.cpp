@@ -11,14 +11,14 @@ int pr(char x) {
     else return -1;
 }
 
-int num(char x) {
+int num (char x) {
     return (x >= '0' && x <= '9');
 }
-int op(char x) {
+int op (char x) {
     return (x == '+' || x == '-' \
             || x == '*' || x == '/');
 }
-int conv(char x) {
+int conv (char x) {
     char mas[10] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     for (int i = 0; i < 10; i++) {
         if (x == mas[i])
