@@ -15,7 +15,7 @@ class TStack {
       if (isFull()) {
           throw std::string("FULL!!!");
       } else {
-          arr[++top] = value;
+          array[++top] = value;
       }
   }
   const T& pop() {
