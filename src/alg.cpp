@@ -11,8 +11,12 @@ int pr(char x) {
     else return -1;
 }
 
-int num (char x) {
-    return (x >= '0' && x <= '9');
+int let(std::string s) {
+    int let = 0;
+    char c = s[0];
+    while (c != '\0')
+        c = s[++l];
+    return let;
 }
 int op (char x) {
     return (x == '+' || x == '-' \
@@ -27,38 +31,42 @@ int conv (char x) {
     return -1;
 }
 std::string infx2pstfx(std::string inf) {
-    TStack<char>  stack1;
-    std::string str = "";
-    for (int i = 0; i < inf.length(); i++) {
-        if (num(inf[i])) {
-            str += inf[i];
-            str += " ";
-        } else if (inf[i] == '(') {
-            stack1.push(inf[i]);
-        } else if (inf[i] == ')') {
-            while (!stack1.isEmpty() && stack1.get() != '(') {
-                str += stack1.get();
-                str += " ";
-                stack1.pop();
+    TStack<char, 100> stack1;
+    std::string result;
+    char node;
+    int i = 0;
+    char ch = arr[0];
+    while (ch != '\0') {
+        if (ch >= '0' && ch <= '9') {
+            result = result + ch + " ";
+        } else if (ch == ')') {
+            if (!stack1.isEmpty()) {
+                node = stack1.pop();
+                while (node != '(') {
+                    result = result + node + " ";
+                    node = stack1.pop();
+                }
             }
-            stack1.pop();
-        } else if (op(inf[i])) {
-            while (!stack1.isEmpty() && pr(stack1.get()) \
-                   >= pr(inf[i])) {
-                str += stack1.get();
-                str += " ";
-                stack1.pop();
+        } else if ((stack1.isEmpty()) || ch == '(' || prior(ch) >\
+                   prior(stack1.get())) {
+            stack1.push(ch);
+        } else if ((!stack1.isEmpty()) && (prior(ch) <= prior(stack1.get()))) {
+            while ((!stack1.isEmpty()) && (prior(ch) <= prior(stack1.get()))) {
+                node = stack1.pop();
+                result = result + node + " ";
             }
-            stack1.push(inf[i]);
+            stack1.push(ch);
         }
+        ++i;
+        ch = arr[i];
     }
     while (!stack1.isEmpty()) {
-        str += stack1.get();
-        str += " ";
-        stack1.pop();
+        node = stack1.pop();
+        if (stack1.isEmpty()) result = result + node;
+        else
+            result = result + node + " ";
     }
-    str.erase(str.length() - 1, 1);
-    return str;
+    return result;
 }
 int eval(std::string pref) {
     TStack<int> stack1_;
