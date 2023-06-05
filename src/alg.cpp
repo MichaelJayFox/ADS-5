@@ -1,7 +1,7 @@
 // Copyright 2021 NNTU-CS
 #include <map>
-#include "tstack.h"
 #include <string>
+#include "tstack.h"
 
 int pr(char x) {
     if (x == '(') return 0;
