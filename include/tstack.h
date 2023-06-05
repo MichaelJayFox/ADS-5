@@ -8,7 +8,7 @@ class TStack {
  private:
   int top;
   T* array;
- 
+
  public:
   TStack() : top(-1) {array = new T[size];}
   void push(T value) {
