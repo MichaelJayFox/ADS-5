@@ -28,7 +28,7 @@ class TStack {
           return array[top--];
   }
   bool isFull() const {
-    return top == size - 1;
+    return (top == size - 1);
   }
   const T& get() const {
     return array[top];
