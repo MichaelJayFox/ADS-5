@@ -8,7 +8,8 @@ int pr(char x) {
     else if (x == ')') return 1;
     else if (x == '+' || x == '-') return 2;
     else if (x == '*' || x == '/') return 3;
-    else return -1;
+    else
+        return -1;
 }
 
 int let(std::string s) {
@@ -18,11 +19,7 @@ int let(std::string s) {
         c = s[++let];
     return let;
 }
-int op (char x) {
-    return (x == '+' || x == '-' \
-            || x == '*' || x == '/');
-}
-int conv (char x) {
+int conv(char x) {
     char mas[10] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     for (int i = 0; i < 10; i++) {
         if (x == mas[i])
@@ -90,6 +87,9 @@ int eval(std::string pref) {
                 }
               }
         }
+        i++;
+        c = pref[i];
+        count--;
     }
     return stack1_.get();
 }
