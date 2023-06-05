@@ -76,14 +76,14 @@ int eval(std::string pref) {
             } else if (!stack1_.isEmpty()) {
                 a = stack1_.pop();
                 b = stack1_.pop();
-                if (pref[i] == '+') {
+                if (c == '+') {
                     stack1_.push(a + b);
-                } else if (pref[i] == '-') {
-                    stack1_.push(a - b);
-                } else if (pref[i] == '*') {
+                } else if (c == '-') {
+                    stack1_.push(b - a);
+                } else if (c == '*') {
                     stack1_.push(a * b);
-                } else if (pref[i] == '/') {
-                    stack1_.push(a / b);
+                } else if (c == '/') {
+                    stack1_.push(b / a);
                 }
               }
         }
@@ -91,5 +91,5 @@ int eval(std::string pref) {
         c = pref[i];
         count--;
     }
-    return stack1_.get();
+    return (stack1_.get());
 }
