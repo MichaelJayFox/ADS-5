@@ -71,23 +71,24 @@ std::string infx2pstfx(std::string inf) {
 int eval(std::string pref) {
     TStack<int, 100> stack1_;
     char c = pref[0];
-    int a, b, i = 0, count = l(pref);
+    int a, b, i = 0, count = let(pref);
     while (count) {
         if (c != ' ') {
             if ((c >= '0') && (c <= '9')) {
-                stack1_.push(toInt(c));
+                stack1_.push(conv(c));
             } else if (!stack1_.isEmpty()) {
                 a = stack1_.pop();
                 b = stack1_.pop();
-            if (pref[i] == '+') {
-                stack1_.push(a + b);
-            } else if (pref[i] == '-') {
-                stack1_.push(a - b);
-            } else if (pref[i] == '*') {
-                stack1_.push(a * b);
-            } else if (pref[i] == '/') {
-                stack1_.push(a / b);
-            }
+                if (pref[i] == '+') {
+                    stack1_.push(a + b);
+                } else if (pref[i] == '-') {
+                    stack1_.push(a - b);
+                } else if (pref[i] == '*') {
+                    stack1_.push(a * b);
+                } else if (pref[i] == '/') {
+                    stack1_.push(a / b);
+                }
+              }
         }
     }
     return stack1_.get();
