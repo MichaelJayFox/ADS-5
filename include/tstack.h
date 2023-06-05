@@ -18,14 +18,14 @@ class TStack {
           array[++top] = value;
       }
   }
+  bool isEmpty() const {
+    return top == -1;
+  }
   const T& pop() {
       if (isEmpty())
           throw std::string("Stack is Empty!");
       else
           return array[top--];
-  }
-  bool isEmpty() const {
-    return top == -1;
   }
   bool isFull() const {
     return top == size - 1;
