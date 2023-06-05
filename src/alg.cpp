@@ -15,7 +15,7 @@ int let(std::string s) {
     int let = 0;
     char c = s[0];
     while (c != '\0')
-        c = s[++l];
+        c = s[++let];
     return let;
 }
 int op (char x) {
@@ -35,7 +35,7 @@ std::string infx2pstfx(std::string inf) {
     std::string result;
     char node;
     int i = 0;
-    char ch = arr[0];
+    char ch = inf[0];
     while (ch != '\0') {
         if (ch >= '0' && ch <= '9') {
             result = result + ch + " ";
@@ -47,18 +47,18 @@ std::string infx2pstfx(std::string inf) {
                     node = stack1.pop();
                 }
             }
-        } else if ((stack1.isEmpty()) || ch == '(' || prior(ch) >\
-                   prior(stack1.get())) {
+        } else if ((stack1.isEmpty()) || ch == '(' || pr(ch) >\
+                   pr(stack1.get())) {
             stack1.push(ch);
-        } else if ((!stack1.isEmpty()) && (prior(ch) <= prior(stack1.get()))) {
-            while ((!stack1.isEmpty()) && (prior(ch) <= prior(stack1.get()))) {
+        } else if ((!stack1.isEmpty()) && (pr(ch) <= pr(stack1.get()))) {
+            while ((!stack1.isEmpty()) && (pr(ch) <= pr(stack1.get()))) {
                 node = stack1.pop();
                 result = result + node + " ";
             }
             stack1.push(ch);
         }
         ++i;
-        ch = arr[i];
+        ch = inf[i];
     }
     while (!stack1.isEmpty()) {
         node = stack1.pop();
@@ -69,15 +69,16 @@ std::string infx2pstfx(std::string inf) {
     return result;
 }
 int eval(std::string pref) {
-    TStack<int> stack1_;
-    for (int i = 0; i < pref.length(); i+=2) {
-        if (num(pref[i])) {
-            stack1_.push(conv(pref[i]));
-        } else if (op(pref[i])) {
-            int b = stack1_.get();
-            stack1_.pop();
-            int a = stack1_.get();
-            stack1_.pop();
+    TStack<int, 100> stack1_;
+    char c = pref[0];
+    int a, b, i = 0, count = l(pref);
+    while (count) {
+        if (c != ' ') {
+            if ((c >= '0') && (c <= '9')) {
+                stack1_.push(toInt(c));
+            } else if (!stack1_.isEmpty()) {
+                a = stack1_.pop();
+                b = stack1_.pop();
             if (pref[i] == '+') {
                 stack1_.push(a + b);
             } else if (pref[i] == '-') {
